@@ -3,13 +3,13 @@ module.exports = {
     if (req.isAuthenticated()) {
       return next()
     }
-    res.redirect('/login') // if not auth
+    res.redirect('/auth/sso') // if not auth
   },
 
   forwardAuthenticated: (req, res, next) => {
     if (!req.isAuthenticated()) {
       return next()
     }
-    res.redirect('/dashboard');  // if auth    
+    res.redirect('/');  // if auth    
   }
 }

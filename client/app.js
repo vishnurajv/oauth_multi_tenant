@@ -1,8 +1,8 @@
 require('dotenv').config()
 
+const passport =require("passport")
 const express = require('express')
 const session = require('express-session')
-const passport =require("passport")
 require('./oauth');
 const auth = require('./auth');
 
@@ -14,8 +14,10 @@ app.use(session({
   saveUninitialized: true
 }))
 
-app.get('/', (req, res) => {
-  console.log(req.isAuthenticated());
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.get('/', auth.ensureAuthenticated, (req, res) => {
   res.send('Hello World!')
 })
 
