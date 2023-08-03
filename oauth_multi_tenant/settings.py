@@ -14,10 +14,10 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv()
 
 
 # Quick-start development settings - unsuitable for production
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'oauth2_provider',
     'authapp',
-    'sslserver'
+    # 'sslserver'
 ]
 
 MIDDLEWARE = [
@@ -136,7 +136,7 @@ OAUTH2_PROVIDER = {
     "OIDC_ENABLED": True,
     "PKCE_REQUIRED": False,
     "OIDC_RSA_PRIVATE_KEY": os.getenv('OIDC_RSA_PRIVATE_KEY'),
-    "OAUTH2_VALIDATOR_CLASS": "django_oauth2_server.oauth_validator.CustomOAuth2Validator",
+    "OAUTH2_VALIDATOR_CLASS": "oauth_multi_tenant.oauth_validator.CustomOAuth2Validator",
     # this is the list of available scopes
     'SCOPES': {
         'read': 'Read scope',
